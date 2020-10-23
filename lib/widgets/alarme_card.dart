@@ -20,6 +20,23 @@ class AlarmeCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: color,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.14),
+            blurRadius: 4,
+            offset: Offset(0, 2),
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.12),
+            blurRadius: 5,
+            offset: Offset(0, 4),
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.12),
+            blurRadius: 10,
+            offset: Offset(0, 1),
+          ),
+        ],
       ),
       child: Padding(
         padding: EdgeInsets.all(8.0),

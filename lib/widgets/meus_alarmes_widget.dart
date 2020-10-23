@@ -30,27 +30,25 @@ class MeusAlarmesWidget extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(bottom: 16),
-          child: Container(
-            height: height,
-            child: ListView.separated(
-              itemCount: 4,
-              separatorBuilder: (_, index) {
-                return SizedBox(width: 16);
-              },
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (_, index) {
-                return Padding(
-                  padding: EdgeInsets.only(left: index == 0 ? 16 : 0),
-                  child: AlarmeCard(
-                    height: height,
-                    width: width,
-                    color: cardColors[index],
-                  ),
-                );
-              },
-            ),
+        Container(
+          height: height,
+          child: ListView.separated(
+            padding: EdgeInsets.only(bottom: 16),
+            itemCount: 4,
+            separatorBuilder: (_, index) {
+              return SizedBox(width: 16);
+            },
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (_, index) {
+              return Padding(
+                padding: EdgeInsets.only(left: index == 0 ? 16 : 0),
+                child: AlarmeCard(
+                  height: height,
+                  width: width,
+                  color: cardColors[index],
+                ),
+              );
+            },
           ),
         ),
       ],
