@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_alarm/utils/colors.dart';
 import 'package:minimal_alarm/widgets/alarme_card.dart';
+import 'package:minimal_alarm/widgets/alarme_dialog.dart';
 
 class MeusAlarmesWidget extends StatelessWidget {
   final double height;
@@ -49,6 +50,12 @@ class MeusAlarmesWidget extends StatelessWidget {
                   right: index == 3 ? 16 : 0,
                 ),
                 child: AlarmeCard(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      child: AlarmeDialog(),
+                    );
+                  },
                   height: height,
                   width: width,
                   color: cardColors[index],
