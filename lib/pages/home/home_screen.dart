@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_alarm/utils/colors.dart';
+import 'package:minimal_alarm/widgets/alarme_dialog.dart';
 import 'package:minimal_alarm/widgets/button_widget.dart';
 import 'package:material_clock/material_clock.dart';
 import 'package:minimal_alarm/widgets/meus_alarmes_widget.dart';
@@ -27,7 +28,12 @@ class HomeScreen extends StatelessWidget {
                     ),
                     ButtonWidget(
                       icon: Icons.add,
-                      function: () {},
+                      function: () {
+                        showDialog(
+                          context: context,
+                          child: AlarmeDialog(),
+                        );
+                      },
                     ),
                   ],
                 ),

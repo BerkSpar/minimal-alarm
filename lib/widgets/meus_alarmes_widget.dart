@@ -8,7 +8,7 @@ class MeusAlarmesWidget extends StatelessWidget {
   final String title;
 
   MeusAlarmesWidget({
-    this.height = 116.0,
+    this.height = 132.0,
     this.width = 160.0,
     this.title = 'Meus Alarmes',
   });
@@ -20,7 +20,7 @@ class MeusAlarmesWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 16, bottom: 8),
+          padding: EdgeInsets.only(left: 16),
           child: Text(
             title,
             style: TextStyle(
@@ -33,7 +33,10 @@ class MeusAlarmesWidget extends StatelessWidget {
         Container(
           height: height,
           child: ListView.separated(
-            padding: EdgeInsets.only(bottom: 16),
+            padding: EdgeInsets.only(
+              bottom: 16,
+              top: 8,
+            ),
             itemCount: 4,
             separatorBuilder: (_, index) {
               return SizedBox(width: 16);
@@ -41,7 +44,10 @@ class MeusAlarmesWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (_, index) {
               return Padding(
-                padding: EdgeInsets.only(left: index == 0 ? 16 : 0),
+                padding: EdgeInsets.only(
+                  left: index == 0 ? 16 : 0,
+                  right: index == 3 ? 16 : 0,
+                ),
                 child: AlarmeCard(
                   height: height,
                   width: width,

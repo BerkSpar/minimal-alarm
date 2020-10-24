@@ -8,3 +8,6 @@ const cardColors = [
   Color(0xFFF4A261),
   Color(0xFFE76F51),
 ];
+
+const lightRed = Color(0xFFFF7C7C);
+const lightBlack = Color(0xFFDADADA);
