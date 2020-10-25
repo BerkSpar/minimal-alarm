@@ -11,18 +11,15 @@ abstract class _HomeControllerBase with Store {
   @observable
   TimeOfDay now = TimeOfDay.now();
 
-  List<Alarme> alarmes = <Alarme>[
-    Alarme(
-      id: 0,
-      colorIndex: 1,
-      descricao: 'Teste do Teste',
-      diaSemana: [0, 1, 2],
-      time: TimeOfDay(hour: 8, minute: 55),
-    ),
-  ];
+  List<Alarme> alarmes = <Alarme>[];
 
   _HomeControllerBase() {
     _setTimer();
+    _init();
+  }
+
+  _init() {
+    //get alarms
   }
 
   _setTimer() {

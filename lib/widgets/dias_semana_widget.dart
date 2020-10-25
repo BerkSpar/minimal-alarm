@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:minimal_alarm/utils/colors.dart';
 
 class DiasSemanaWidget extends StatefulWidget {

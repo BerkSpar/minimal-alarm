@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:minimal_alarm/widgets/dias_semana_widget.dart';
 import 'package:minimal_alarm/widgets/time_widget.dart';
-
 import '../shared/models/alarme.dart';
 
 class AlarmeDialog extends StatefulWidget {
