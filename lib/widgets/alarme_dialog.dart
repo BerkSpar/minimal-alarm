@@ -3,7 +3,15 @@ import 'package:lottie/lottie.dart';
 import 'package:minimal_alarm/widgets/dias_semana_widget.dart';
 import 'package:minimal_alarm/widgets/time_widget.dart';
 
+import '../shared/models/alarme.dart';
+
 class AlarmeDialog extends StatefulWidget {
+  final Alarme alarme;
+
+  AlarmeDialog({
+    this.alarme,
+  });
+
   @override
   _AlarmeDialogState createState() => _AlarmeDialogState();
 }
@@ -12,6 +20,12 @@ class _AlarmeDialogState extends State<AlarmeDialog> {
   TimeOfDay _time = TimeOfDay.now();
   List<int> _diasSemana = [];
   TextEditingController _descricaoCtrl = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _descricaoCtrl.text = widget.alarme?.descricao ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +54,11 @@ class _AlarmeDialogState extends State<AlarmeDialog> {
                       _time = time;
                     });
                   },
-                  time: _time,
+                  time: widget.alarme?.time ?? _time,
                 ),
                 SizedBox(height: 16),
                 DiasSemanaWidget(
-                  diasSemana: _diasSemana,
+                  diasSemana: widget.alarme?.diaSemana ?? _diasSemana,
                 ),
                 SizedBox(height: 24),
                 TextFormField(

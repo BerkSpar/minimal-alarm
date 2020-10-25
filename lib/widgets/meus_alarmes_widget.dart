@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:minimal_alarm/utils/colors.dart';
 import 'package:minimal_alarm/widgets/alarme_card.dart';
 import 'package:minimal_alarm/widgets/alarme_dialog.dart';
+import '../shared/models/alarme.dart';
 
 class MeusAlarmesWidget extends StatelessWidget {
   final double height;
   final double width;
-  final String title;
+  final List<Alarme> alarmes;
 
   MeusAlarmesWidget({
     this.height = 132.0,
     this.width = 160.0,
-    this.title = 'Meus Alarmes',
+    @required this.alarmes,
   });
 
   @override
@@ -23,7 +24,7 @@ class MeusAlarmesWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 16),
           child: Text(
-            title,
+            'Meus Alarmes',
             style: TextStyle(
               fontSize: 48,
               color: textColor,
@@ -38,7 +39,7 @@ class MeusAlarmesWidget extends StatelessWidget {
               bottom: 16,
               top: 8,
             ),
-            itemCount: 4,
+            itemCount: alarmes.length,
             separatorBuilder: (_, index) {
               return SizedBox(width: 16);
             },
@@ -53,12 +54,14 @@ class MeusAlarmesWidget extends StatelessWidget {
                   onTap: () {
                     showDialog(
                       context: context,
-                      child: AlarmeDialog(),
+                      child: AlarmeDialog(
+                        alarme: alarmes[index],
+                      ),
                     );
                   },
                   height: height,
                   width: width,
-                  color: cardColors[index],
+                  alarme: alarmes[index],
                 ),
               );
             },

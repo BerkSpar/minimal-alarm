@@ -17,7 +17,9 @@ class HomeScreen extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.bottomCenter,
-            child: MeusAlarmesWidget(),
+            child: MeusAlarmesWidget(
+              alarmes: controller.alarmes,
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(16.0),
