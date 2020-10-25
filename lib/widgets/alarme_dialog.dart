@@ -1,10 +1,18 @@
-import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:minimal_alarm/utils/colors.dart';
 import 'package:minimal_alarm/widgets/dias_semana_widget.dart';
+import 'package:minimal_alarm/widgets/time_widget.dart';
 
-class AlarmeDialog extends StatelessWidget {
+class AlarmeDialog extends StatefulWidget {
+  @override
+  _AlarmeDialogState createState() => _AlarmeDialogState();
+}
+
+class _AlarmeDialogState extends State<AlarmeDialog> {
+  TimeOfDay _time = TimeOfDay.now();
+  List<int> _diasSemana = [];
+  TextEditingController _descricaoCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -26,35 +34,21 @@ class AlarmeDialog extends StatelessWidget {
                   height: 200,
                 ),
                 SizedBox(height: 16),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      showPicker(
-                        context: context,
-                        is24HrFormat: true,
-                        value: TimeOfDay(
-                          hour: 8,
-                          minute: 55,
-                        ),
-                        onChange: (timeOfDay) {},
-                      ),
-                    );
+                TimeWidget(
+                  onChange: (time) {
+                    this.setState(() {
+                      _time = time;
+                    });
                   },
-                  child: Text(
-                    '08:00',
-                    style: TextStyle(
-                      fontSize: 48,
-                      color: textColor,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+                  time: _time,
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 16),
                 DiasSemanaWidget(
-                  diasSemana: [],
+                  diasSemana: _diasSemana,
                 ),
                 SizedBox(height: 24),
                 TextFormField(
+                  controller: _descricaoCtrl,
                   decoration: InputDecoration(
                     hintText: 'Ex.: Café da manhã',
                     hintStyle: TextStyle(
@@ -85,7 +79,9 @@ class BotoesWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           color: Colors.grey.withOpacity(0.2),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           child: Text(
             'cancelar',
             style: TextStyle(

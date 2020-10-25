@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'package:minimal_alarm/utils/colors.dart';
 
-class DiasSemanaWidget extends StatelessWidget {
+class DiasSemanaWidget extends StatefulWidget {
   final List<int> diasSemana;
 
   DiasSemanaWidget({
     @required this.diasSemana,
   });
 
+  @override
+  _DiasSemanaWidgetState createState() => _DiasSemanaWidgetState();
+}
+
+class _DiasSemanaWidgetState extends State<DiasSemanaWidget> {
   // ignore: missing_return
   String _getText(int id) {
     switch (id) {
@@ -31,7 +36,16 @@ class DiasSemanaWidget extends StatelessWidget {
       return DiaButton(
         text: _getText(id),
         color: id == 0 ? lightRed : lightBlack,
-        ativo: diasSemana.contains(id),
+        ativo: widget.diasSemana.contains(id),
+        onTap: () {
+          if (widget.diasSemana.contains(id)) {
+            widget.diasSemana.remove(id);
+          } else {
+            widget.diasSemana.add(id);
+          }
+
+          this.setState(() {});
+        },
       );
     });
   }
@@ -49,28 +63,34 @@ class DiaButton extends StatelessWidget {
   final String text;
   final Color color;
   final bool ativo;
+  final Function onTap;
 
   DiaButton({
     @required this.text,
+    @required this.onTap,
     @required this.color,
     @required this.ativo,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 24,
-      width: 24,
-      decoration: BoxDecoration(
-        color: ativo ? Colors.green : color,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Center(
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: ativo ? FontWeight.bold : FontWeight.w300,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 24,
+        width: 24,
+        decoration: BoxDecoration(
+          color: ativo ? Colors.green : color,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: ativo ? Colors.white : Colors.black,
+              fontWeight: ativo ? FontWeight.bold : FontWeight.w300,
+            ),
           ),
         ),
       ),
